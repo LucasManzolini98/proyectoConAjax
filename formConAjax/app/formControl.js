@@ -1,14 +1,21 @@
-console.log("clase formcontrol");
-
 import { Persona } from "../persona.js";
 
 let data;
 let miForm = new FormData(document.querySelector("#mi-form"));
 
-console.log(miForm)
+let name = miForm.get("first_name");
+let lastname = miForm.get("last_name");
+let password = miForm.get("password");
+let email = miForm.get("email");
+let btnSubmit = document.querySelector("#btnSubmit");
 
-for(var pair of miForm.entries()) {
-  console.log(pair[0]+ ', '+ pair[1]); 
-}
 
-//miForm.addEventListener("submit", prueba());
+
+
+let enviar = (name, lastname, password, email) => {
+  let persona = new Persona(name, lastname, password, email);
+  console.log(persona);
+  return JSON.stringify(persona);
+};
+enviar(name, lastname, password, email);
+btnSubmit.addEventListener("click", enviar());
